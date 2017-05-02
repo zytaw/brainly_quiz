@@ -2,7 +2,8 @@ const myRequest = new Request('https://cdn.rawgit.com/kdzwinel/cd08d08002995675f
 
 const config = {
   questions: [],
-  currentQuestion: -1
+  currentQuestion: -1,
+  result: 0
 }
 
 fetch(myRequest)
