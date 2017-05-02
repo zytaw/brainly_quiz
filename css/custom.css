@@ -3,12 +3,19 @@
 }
 
 .sg-layout__content--auto-margin {
-  /*padding: 0.75rem;*/
   margin: auto;
 }
 
+.sg-box--centered-text {
+  text-overflow: ellipsis;
+  min-height: 4.5rem;
+  border-radius: 8px;
+  border: 1px solid #9fa6b5;
+  padding: 23px;
+  background-color: #fff;
+}
+
 .sg-box__container--auto-margin {
-  /*padding: 0.75rem 0;*/
   margin: 0.75rem 0;
 }
 
@@ -26,4 +33,8 @@
 
 .sg-box__container--wrong-answer {
   background-color: #ffb3ae;
+}
+
+.sg-text--padding {
+    padding: 4rem 0;
 }

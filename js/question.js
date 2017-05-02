@@ -1,6 +1,6 @@
 function buildAnswer(text, id) {
   return `
-      <div id="answer-${id}" class="sg-box sg-box--full sg-media--clickable sg-box__container--auto-margin sg-text--centered" data-id="${id}">
+      <div id="answer-${id}" class="sg-box--centered-text sg-box--full sg-media--clickable sg-box__container--auto-margin sg-text--centered" data-id="${id}">
         ${text}
       </div>
   `;
