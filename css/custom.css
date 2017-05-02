@@ -1,0 +1,29 @@
+.sg-text--centered {
+  text-align: center;
+}
+
+.sg-layout__content--auto-margin {
+  /*padding: 0.75rem;*/
+  margin: auto;
+}
+
+.sg-box__container--auto-margin {
+  /*padding: 0.75rem 0;*/
+  margin: 0.75rem 0;
+}
+
+.sg-layout__box--min-height {
+  min-height: 4.5rem;
+}
+
+.sg-layout__container--hidden {
+  display: none;
+}
+
+.sg-box__container--correct-answer {
+  background-color: #a8edc8;
+}
+
+.sg-box__container--wrong-answer {
+  background-color: #ffb3ae;
+}
