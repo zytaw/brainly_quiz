@@ -9,5 +9,6 @@ fetch(myRequest)
   .then(function(response) { return response.json(); })
   .then(function(data) {
     config.questions = data.questions;
+    showStartButton();
   }
 );

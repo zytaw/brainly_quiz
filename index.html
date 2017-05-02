@@ -9,12 +9,22 @@
     <title>Brainly quiz</title>
     <link href="https://styleguide.brainly.com/77.2.0/style-guide.css" rel="stylesheet"/>
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/overrides.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 <body>
   <div class="sg-header sg-header--fixed">
     <div class="sg-header__container">
     </div>
   </div>
+  <div id="start-button-container" class="sg-layout__container sg-layout__container--hidden sg-text--centered">
+    <div class="sg-layout__content sg-layout__content--auto-margin">
+      <button class="sg-button-primary sg-button-primary--alt" onclick="startQuiz()">
+        START QUIZ
+      </button>
+    </div>
+  </div>
+  <script src="js/quiz.js"></script>
   <script src="index.js"></script>
 </body>
 </html>
