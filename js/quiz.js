@@ -4,6 +4,7 @@ function showStartButton() {
 
 function startQuiz() {
   config.result = 0;
+  config.currentQuestion = -1;
   document.getElementById('start-button-container').classList.add('sg-layout__container--hidden');
   displayQuestion();
 }
@@ -60,4 +61,9 @@ function finishQuiz() {
   document.getElementById('result').innerHTML = `${config.result}/${config.questions.length}`;
   document.getElementById('result-container').classList.remove('sg-layout__container--hidden');
   document.getElementById('restart-button-container').classList.remove('sg-layout__container--hidden');
+}
+
+function restartQuiz() {
+  document.getElementById('result-container').classList.add('sg-layout__container--hidden');
+  startQuiz();
 }
