@@ -36,5 +36,9 @@
 }
 
 .sg-text--padding {
-    padding: 4rem 0;
+  padding: 4rem 0;
+}
+
+.sg-text--padding-left {
+  padding: 0 0 0 1rem;
 }

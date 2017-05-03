@@ -7,6 +7,7 @@ function startQuiz() {
   config.currentQuestion = -1;
   document.getElementById('start-button-container').classList.add('sg-layout__container--hidden');
   displayQuestion();
+  setInterval(updateTimer, 1000);
 }
 
 function displayQuestion() {
@@ -66,4 +67,17 @@ function finishQuiz() {
 function restartQuiz() {
   document.getElementById('result-container').classList.add('sg-layout__container--hidden');
   startQuiz();
+}
+
+function updateTimer() {
+  document.getElementById('timer').innerHTML = formatTime(config.timeLeft);
+  config.timeLeft--;
+  if (config.timeLeft == 0)
+    finishQuiz;
+}
+
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes}:${("0" + seconds).slice(-2)}`;
 }
