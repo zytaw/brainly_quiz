@@ -16,6 +16,7 @@ function startQuiz() {
   config.currentQuestion = -1;
   config.timeLeft = config.timeLimit;
   config.timerId = setInterval(updateTimer, 1000);
+  displayQuestion();
 }
 
 function displayQuestion() {
