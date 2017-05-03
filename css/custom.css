@@ -46,3 +46,9 @@
 .sg-text--width-4rem {
   width: 4rem;
 }
+
+@media (min-width: 1024px) {
+  body {
+    background-color: #f0f3f5;
+  }
+}
