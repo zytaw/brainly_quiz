@@ -7,7 +7,8 @@ function startQuiz() {
   config.currentQuestion = -1;
   document.getElementById('start-button-container').classList.add('sg-layout__container--hidden');
   displayQuestion();
-  setInterval(updateTimer, 1000);
+  config.timeLeft = config.timeLimit;
+  config.timerId = setInterval(updateTimer, 1000);
 }
 
 function displayQuestion() {
@@ -50,6 +51,7 @@ function checkAnswer(e) {
 }
 
 function finishQuiz() {
+  clearInterval(config.timerId);
   document.getElementById('question-container').classList.add('sg-layout__container--hidden');
   if (config.result/config.questions.length >= 0.5) {
     document.getElementById('result-msg').innerHTML = 'GRATULACJE! ZDAŁEŚ TEST!';
@@ -72,8 +74,8 @@ function restartQuiz() {
 function updateTimer() {
   document.getElementById('timer').innerHTML = formatTime(config.timeLeft);
   config.timeLeft--;
-  if (config.timeLeft == 0)
-    finishQuiz;
+  if (config.timeLeft <= 0)
+    finishQuiz();
 }
 
 function formatTime(time) {

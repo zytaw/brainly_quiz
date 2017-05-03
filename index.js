@@ -9,7 +9,7 @@ const config = {
 fetch(myRequest)
   .then(function(response) { return response.json(); })
   .then(function(data) {
-    config.timeLeft = data.time_seconds;
+    config.timeLimit = data.time_seconds;
     config.questions = data.questions;
     showStartButton();
   }
