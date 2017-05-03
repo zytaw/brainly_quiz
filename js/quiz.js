@@ -1,32 +1,39 @@
+function showElement(id) {
+  document.getElementById(id).classList.remove('sg-layout__container--hidden');
+}
+
+function hideElement(id) {
+  document.getElementById(id).classList.add('sg-layout__container--hidden');
+}
+
 function showStartButton() {
-  document.getElementById('start-button-container').classList.remove('sg-layout__container--hidden');
+  showElement('start-button-container');
 }
 
 function startQuiz() {
+  hideElement('start-button-container');
   config.result = 0;
   config.currentQuestion = -1;
-  document.getElementById('start-button-container').classList.add('sg-layout__container--hidden');
-  displayQuestion();
   config.timeLeft = config.timeLimit;
   config.timerId = setInterval(updateTimer, 1000);
 }
 
 function displayQuestion() {
-  question = getNextQuestion();
+  const question = getNextQuestion();
   if (!question) {
     finishQuiz();
     return;
   }
   setQuestion(question.question);
-  answersContainer = document.getElementById('answers');
+  const answersContainer = document.getElementById('answers');
   answersContainer.innerHTML = '';
   question.answers.forEach(answer => {
     answersContainer.innerHTML += buildAnswer(answer.answer, answer.id);
   });
   question.answers.forEach(answer => {
-    document.getElementById(`answer-${answer.id}`).addEventListener("click", checkAnswer, {once: true});
+    document.getElementById(`answer-${answer.id}`).addEventListener('click', checkAnswer, {once: true});
   });
-  document.getElementById('question-container').classList.remove('sg-layout__container--hidden');
+  showElement('question-container');
 }
 
 function getNextQuestion() {
@@ -37,37 +44,42 @@ function getNextQuestion() {
 function checkAnswer(e) {
   const answerId = e.target.dataset.id;
   config.questions[config.currentQuestion].answers.forEach(answer => {
-    document.getElementById(`answer-${answer.id}`).classList.remove('sg-media--clickable');
-    document.getElementById(`answer-${answer.id}`).removeEventListener("click", checkAnswer, {once: true});
+    const answerElement = document.getElementById(`answer-${answer.id}`);
+    answerElement.classList.remove('sg-media--clickable');
+    answerElement.removeEventListener('click', checkAnswer, {once: true});
   });
-  if (config.questions[config.currentQuestion].answers[answerId-1].correct){
-    document.getElementById(`answer-${answerId}`).classList.add('sg-box__container--correct-answer');
+  const chosenAnswerElement = document.getElementById(`answer-${answerId}`);
+  if (config.questions[config.currentQuestion].answers[answerId - 1].correct){
+    chosenAnswerElement.classList.add('sg-box__container--correct-answer');
     config.result++;
   }
   else {
-    document.getElementById(`answer-${answerId}`).classList.add('sg-box__container--wrong-answer');
+    chosenAnswerElement.classList.add('sg-box__container--wrong-answer');
   }
   setTimeout(displayQuestion, 500);
 }
 
 function finishQuiz() {
   clearInterval(config.timerId);
-  document.getElementById('question-container').classList.add('sg-layout__container--hidden');
+  hideElement('question-container');
+  const resultElement = document.getElementById('result');
+  const resultMsgElement = document.getElementById('result-msg');
   if (config.result/config.questions.length >= 0.5) {
-    document.getElementById('result-msg').innerHTML = 'GRATULACJE! ZDAŁEŚ TEST!';
+    resultElement.classList.remove('sg-text-bit--warning');
+    resultMsgElement.innerHTML = config.successMsg;
   }
   else {
-    document.getElementById('result').classList.add('sg-text-bit--warning');
-    document.getElementById('result-msg').innerHTML = 'MUSISZ JESZCZE POĆWICZYĆ...';
+    resultElement.classList.add('sg-text-bit--warning');
+    resultMsgElement.innerHTML = config.failMsg;
   }
-  document.getElementById('result').classList.remove('sg-layout__container--hidden');
-  document.getElementById('result').innerHTML = `${config.result}/${config.questions.length}`;
-  document.getElementById('result-container').classList.remove('sg-layout__container--hidden');
-  document.getElementById('restart-button-container').classList.remove('sg-layout__container--hidden');
+  resultElement.innerHTML = `${config.result}/${config.questions.length}`;
+  showElement('result-container');
+  showElement('result');
+  showElement('restart-button-container');
 }
 
 function restartQuiz() {
-  document.getElementById('result-container').classList.add('sg-layout__container--hidden');
+  hideElement('result-container');
   startQuiz();
 }
 
